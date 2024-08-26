@@ -1,11 +1,11 @@
 import React from "react";
-import Home from "./pages/home";
+import DashboardPage from "./pages/Home";
 import { Container } from "@mui/material";
 
 const App: React.FC = () => {
   return (
-    <Container maxWidth={false}>
-      <Home />
+    <Container maxWidth={false} disableGutters>
+      <DashboardPage />
     </Container>
   );
 };

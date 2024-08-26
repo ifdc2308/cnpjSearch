@@ -1,8 +1,7 @@
 import React from "react";
 import ResponsiveAppBar from "../components/AppBar";
-import { Container } from "@mui/material";
 
-const Home: React.FC = () => {
+const DashboardPage: React.FC = () => {
   return (
     <>
       <ResponsiveAppBar />
@@ -11,4 +10,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default DashboardPage;
