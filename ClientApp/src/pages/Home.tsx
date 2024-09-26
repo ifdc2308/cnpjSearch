@@ -9,6 +9,7 @@ import {
   Box,
   Modal,
   Stack,
+  LinearProgress,
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { getCNPJ } from "../services/cnpj";
@@ -20,6 +21,7 @@ const DashboardPage: React.FC = () => {
   const [cnpj, setCnpj] = useState<string>("");
   const [empresa, setEmpresa] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
 
   const formatCNPJ = (value: string) => {
@@ -49,6 +51,7 @@ const DashboardPage: React.FC = () => {
     setCnpj(formattedValue);
   };
   const handleSearchClick = async () => {
+    setLoading(true);
     try {
       const unmaskedCNPJ = removeMask(cnpj);
       const empresaData = await getCNPJ(unmaskedCNPJ);
@@ -60,6 +63,8 @@ const DashboardPage: React.FC = () => {
         "Erro ao consultar o CNPJ. Verifique o número e tente novamente."
       );
       setEmpresa(null);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -143,6 +148,11 @@ const DashboardPage: React.FC = () => {
           >
             <Box component="img" sx={styles.imageLogo} src={imageLogo}></Box>
           </Grid>
+          {loading && (
+            <Box sx={{ width: "50%", mt: 2 }}>
+              <LinearProgress />
+            </Box>
+          )}
           {error && (
             <Grid item xs={12}>
               <Typography style={{ color: "red" }}>{error}</Typography>{" "}

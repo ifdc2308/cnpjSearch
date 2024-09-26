@@ -1,6 +1,5 @@
 import { Grid, Typography, Paper, Box } from "@mui/material";
 import { Empresa } from "../interfaces/Empresa";
-import { Height } from "@mui/icons-material";
 
 interface InfoCnpjModalProps {
   empresa: Empresa;
@@ -118,6 +117,20 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
           </Paper>
         </Grid>
 
+        {/* Atividades Secundárias */}
+        <Grid item xs={12}>
+          <Paper sx={{ p: 2, mb: 2 }}>
+            <Typography variant="h6">Atividades Secundárias</Typography>
+            {empresa.estabelecimento.atividades_secundarias.map(
+              (secundarias: any, index: number) => (
+                <Typography key={index}>
+                  {`${secundarias.subclasse} - ${secundarias.descricao}`}
+                </Typography>
+              )
+            )}
+          </Paper>
+        </Grid>
+
         {/* Estabelecimento - Endereço e Contato */}
         <Grid item xs={12}>
           <Paper sx={{ p: 2, mb: 2 }}>
@@ -128,6 +141,9 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
             </Typography>
             <Typography>
               <strong>Tipo:</strong> {empresa.estabelecimento.tipo}
+            </Typography>
+            <Typography>
+              <strong>CNPJ:</strong> {empresa.estabelecimento.cnpj}
             </Typography>
             <Typography>
               <strong>Situação Cadastral:</strong>{" "}
