@@ -3,12 +3,12 @@ import ResponsiveAppBar from "../components/AppBar";
 import {
   Container,
   Grid,
-  Paper,
   IconButton,
   InputBase,
   Typography,
   Box,
   Modal,
+  Stack,
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { getCNPJ } from "../services/cnpj";
@@ -70,53 +70,66 @@ const DashboardPage: React.FC = () => {
         maxWidth="lg"
         sx={{
           p: 1,
-          minHeight: "100vh",
         }}
       >
-        <Grid container spacing={1}>
+        <Grid
+          container
+          spacing={8}
+          sx={{
+            minHeight: "90vh", // altura mínima para ocupar 85% da viewport
+            display: "flex",
+            alignItems: "center", // alinha verticalmente ao centro
+            justifyContent: "center", // opcional: centraliza horizontalmente
+          }}
+        >
           <Grid
             item
             xs={12}
             sm={6}
             sx={{
               display: "flex",
-              alignItems: "center",
-              alignContent: "center",
+              alignItems: "center", // alinha verticalmente ao centro
+              justifyContent: "center", // opcional: centraliza horizontalmente
             }}
           >
-            <Box
-              component="form"
-              sx={{
-                p: "1px 20px",
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                backgroundColor: "#fff",
-                borderRadius: 10,
-                border: "1px solid #000",
-              }}
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSearchClick();
-              }}
-            >
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="00.000.000/0000-00"
-                inputProps={{ "aria-label": "Pesquisar CNPJ" }}
-                value={cnpj}
-                onChange={handleInputChange}
-                required
-              />
-              <IconButton
-                type="button"
-                sx={{ p: "10px" }}
-                aria-label="search"
-                onClick={handleSearchClick}
+            <Stack direction={"column"} spacing={5}>
+              <Typography variant="h5" sx={styles.title}>
+                Consulte informações de uma empresa com a consulta por CNPJ !
+              </Typography>
+              <Box
+                component="form"
+                sx={{
+                  p: "1px 20px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100%",
+                  backgroundColor: "#fff",
+                  borderRadius: 10,
+                  border: "1px solid #000",
+                }}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSearchClick();
+                }}
               >
-                <Search />
-              </IconButton>
-            </Box>
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="00.000.000/0000-00"
+                  inputProps={{ "aria-label": "Pesquisar CNPJ" }}
+                  value={cnpj}
+                  onChange={handleInputChange}
+                  required
+                />
+                <IconButton
+                  type="button"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                  onClick={handleSearchClick}
+                >
+                  <Search />
+                </IconButton>
+              </Box>
+            </Stack>
           </Grid>
           <Grid
             item
@@ -136,7 +149,7 @@ const DashboardPage: React.FC = () => {
               {/* Exibe o erro se houver */}
             </Grid>
           )}
-          {empresa ? (
+          {empresa && (
             <Modal
               open={open}
               onClose={handleClose}
@@ -144,18 +157,6 @@ const DashboardPage: React.FC = () => {
             >
               <InfoCnpjModal empresa={empresa} />
             </Modal>
-          ) : (
-            <Grid
-              container
-              spacing={1}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                alignContent: "center",
-              }}
-            >
-              <Grid item xs={12}></Grid>
-            </Grid>
           )}
         </Grid>
       </Container>
@@ -171,15 +172,7 @@ const styles = {
     width: 400,
     height: 400,
   },
-  modal: {
-    top: "50%",
-    overflow: "auto",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "80%",
-    bgcolor: "#fff",
-    border: "1px solid #000",
-    boxShadow: 24,
-    p: 2,
+  title: {
+    fontWeight: 600,
   },
 };

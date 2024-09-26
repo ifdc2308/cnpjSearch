@@ -207,14 +207,15 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
 const styles = {
   modal: {
     position: "absolute" as "absolute",
+    borderRadius: 5,
     overflow: "auto",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "60%",
-    height: "90%",
+    width: "70%",
+    height: "70%",
     bgcolor: "background.paper",
     boxShadow: 24,
-    p: 4,
+    p: 5,
   },
 };
