@@ -71,12 +71,7 @@ const DashboardPage: React.FC = () => {
   return (
     <>
       <ResponsiveAppBar />
-      <Container
-        maxWidth="lg"
-        sx={{
-          p: 1,
-        }}
-      >
+      <Container maxWidth="lg">
         <Grid
           container
           spacing={8}
@@ -150,7 +145,12 @@ const DashboardPage: React.FC = () => {
           </Grid>
           {loading && (
             <Box sx={{ width: "50%", mt: 2 }}>
-              <LinearProgress />
+              <LinearProgress
+                sx={{
+                  backgroundColor: "#e0e0e0",
+                  "& .MuiLinearProgress-bar": { backgroundColor: "#ff735c" },
+                }}
+              />
             </Box>
           )}
           {error && (

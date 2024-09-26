@@ -8,6 +8,7 @@ interface InfoCnpjModalProps {
 export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
   return (
     <Box sx={styles.modal}>
+      <Typography sx={styles.title}>Informações da empresa</Typography>
       <Grid container spacing={2} sx={{ mt: 2 }}>
         {/* Dados da Empresa */}
         <Grid item xs={12}>
@@ -233,5 +234,11 @@ const styles = {
     bgcolor: "background.paper",
     boxShadow: 24,
     p: 5,
+  },
+  title: {
+    fontWeight: 700,
+    color: "#ff735c",
+    fontSize: 23,
+    textAlign: "center",
   },
 };
