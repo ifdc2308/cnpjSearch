@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { getCNPJ } from "../services/cnpj";
-import imageLogo from "/cnpjSearch/ClientApp/src/assets/searchAvatar.jpg";
+import imageLogo from "../assets/searchAvatar.jpg";
 import { Footer } from "../components/Footer";
 import { InfoCnpjModal } from "./InfoCnpjModal";
 
