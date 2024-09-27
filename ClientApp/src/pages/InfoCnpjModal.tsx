@@ -44,7 +44,7 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
         {/* Dados dos Sócios */}
         <Grid item xs={12}>
           <Typography variant="h6">Sócios</Typography>
-          {empresa.socios.map((socio: any, index: number) => (
+          {empresa?.socios?.map((socio: any, index: number) => (
             <Paper key={index} sx={{ p: 2, mb: 2 }}>
               <Typography>
                 <strong>Nome:</strong> {socio?.nome}
@@ -122,7 +122,7 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
         <Grid item xs={12}>
           <Paper sx={{ p: 2, mb: 2 }}>
             <Typography variant="h6">Atividades Secundárias</Typography>
-            {empresa?.estabelecimento?.atividades_secundarias.map(
+            {empresa?.estabelecimento?.atividades_secundarias?.map(
               (secundarias: any, index: number) => (
                 <Typography key={index}>
                   {`${secundarias?.subclasse} - ${secundarias?.descricao}`}
@@ -194,7 +194,7 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
           <Paper sx={{ p: 2, mb: 2 }}>
             <Typography variant="h6">Inscrições Estaduais</Typography>
             {empresa?.estabelecimento?.inscricoes_estaduais?.length > 0 ? (
-              empresa?.estabelecimento?.inscricoes_estaduais.map(
+              empresa?.estabelecimento?.inscricoes_estaduais?.map(
                 (inscricao: any, index: number) => (
                   <Paper key={index} sx={{ p: 2, mb: 2 }}>
                     <Typography>
