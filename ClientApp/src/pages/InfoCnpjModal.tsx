@@ -50,7 +50,7 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
                 <strong>Nome:</strong> {socio?.nome}
               </Typography>
               <Typography>
-                <strong>CPF/CNPJ Sócio:</strong> {socio.cpf_cnpj_socio}
+                <strong>CPF/CNPJ Sócio:</strong> {socio?.cpf_cnpj_socio}
               </Typography>
               <Typography>
                 <strong>Tipo:</strong> {socio?.tipo}
@@ -78,16 +78,20 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
               <strong>Simples:</strong> {empresa?.simples?.simples}
             </Typography>
             <Typography>
-              <strong>Data de Opção pelo Simples:</strong>{" "}
-              {new Date(
-                empresa?.simples?.data_opcao_simples || "Não informado"
-              ).toLocaleDateString()}
+              <strong>Data de Opção pelo Simples:</strong>
+              {empresa?.simples?.data_opcao_simples
+                ? new Date(
+                    empresa?.simples?.data_opcao_simples
+                  ).toLocaleDateString()
+                : "Não informado"}
             </Typography>
             <Typography>
-              <strong>Data de Exclusão do Simples:</strong>{" "}
-              {new Date(
-                empresa?.simples?.data_exclusao_simples || "Não informado"
-              ).toLocaleDateString()}
+              <strong>Data de Exclusão do Simples:</strong>
+              {empresa?.simples?.data_exclusao_simples
+                ? new Date(
+                    empresa?.simples?.data_exclusao_simples
+                  ).toLocaleDateString()
+                : "Não informado"}
             </Typography>
             <Typography>
               <strong>MEI:</strong> {empresa?.simples?.mei}
@@ -153,7 +157,7 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
             <Typography>
               <strong>Data de Situação Cadastral:</strong>{" "}
               {new Date(
-                empresa.estabelecimento.data_situacao_cadastral
+                empresa?.estabelecimento?.data_situacao_cadastral
               ).toLocaleDateString()}
             </Typography>
             <Typography>
@@ -176,8 +180,8 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
               <strong>CEP:</strong> {empresa?.estabelecimento?.cep}
             </Typography>
             <Typography>
-              <strong>Cidade:</strong> {empresa?.estabelecimento?.cidade?.nome} -{" "}
-              {empresa?.estabelecimento?.estado?.sigla}
+              <strong>Cidade:</strong> {empresa?.estabelecimento?.cidade?.nome}{" "}
+              - {empresa?.estabelecimento?.estado?.sigla}
             </Typography>
             <Typography>
               <strong>Telefone:</strong> ({empresa?.estabelecimento?.ddd1}){" "}
