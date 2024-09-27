@@ -15,28 +15,28 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
           <Paper sx={{ p: 2, mb: 2 }}>
             <Typography variant="h6">Dados da Empresa</Typography>
             <Typography>
-              <strong>Razão Social:</strong> {empresa.razao_social}
+              <strong>Razão Social:</strong> {empresa?.razao_social}
             </Typography>
             <Typography>
-              <strong>CNPJ Raiz:</strong> {empresa.cnpj_raiz}
+              <strong>CNPJ Raiz:</strong> {empresa?.cnpj_raiz}
             </Typography>
             <Typography>
-              <strong>Capital Social:</strong> {empresa.capital_social}
+              <strong>Capital Social:</strong> {empresa?.capital_social}
             </Typography>
             <Typography>
               <strong>Responsável Federativo:</strong>{" "}
-              {empresa.responsavel_federativo || "Não informado"}
+              {empresa?.responsavel_federativo || "Não informado"}
             </Typography>
             <Typography>
-              <strong>Porte:</strong> {empresa.porte.descricao}
+              <strong>Porte:</strong> {empresa?.porte?.descricao}
             </Typography>
             <Typography>
               <strong>Natureza Jurídica:</strong>{" "}
-              {empresa.natureza_juridica.descricao}
+              {empresa?.natureza_juridica?.descricao}
             </Typography>
             <Typography>
               <strong>Atualizado em:</strong>{" "}
-              {new Date(empresa.atualizado_em).toLocaleDateString()}
+              {new Date(empresa?.atualizado_em).toLocaleDateString()}
             </Typography>
           </Paper>
         </Grid>
@@ -47,24 +47,24 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
           {empresa.socios.map((socio: any, index: number) => (
             <Paper key={index} sx={{ p: 2, mb: 2 }}>
               <Typography>
-                <strong>Nome:</strong> {socio.nome}
+                <strong>Nome:</strong> {socio?.nome}
               </Typography>
               <Typography>
                 <strong>CPF/CNPJ Sócio:</strong> {socio.cpf_cnpj_socio}
               </Typography>
               <Typography>
-                <strong>Tipo:</strong> {socio.tipo}
+                <strong>Tipo:</strong> {socio?.tipo}
               </Typography>
               <Typography>
                 <strong>Data de Entrada:</strong>{" "}
-                {new Date(socio.data_entrada).toLocaleDateString()}
+                {new Date(socio?.data_entrada).toLocaleDateString()}
               </Typography>
               <Typography>
                 <strong>Qualificação do Sócio:</strong>{" "}
-                {socio.qualificacao_socio.descricao}
+                {socio?.qualificacao_socio?.descricao}
               </Typography>
               <Typography>
-                <strong>Faixa Etária:</strong> {socio.faixa_etaria}
+                <strong>Faixa Etária:</strong> {socio?.faixa_etaria}
               </Typography>
             </Paper>
           ))}
@@ -75,7 +75,7 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
           <Paper sx={{ p: 2, mb: 2 }}>
             <Typography variant="h6">Simples Nacional</Typography>
             <Typography>
-              <strong>Simples:</strong> {empresa.simples.simples}
+              <strong>Simples:</strong> {empresa?.simples?.simples}
             </Typography>
             <Typography>
               <strong>Data de Opção pelo Simples:</strong>{" "}
@@ -86,15 +86,15 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
             <Typography>
               <strong>Data de Exclusão do Simples:</strong>{" "}
               {new Date(
-                empresa.simples.data_exclusao_simples || "Não informado"
+                empresa?.simples?.data_exclusao_simples || "Não informado"
               ).toLocaleDateString()}
             </Typography>
             <Typography>
-              <strong>MEI:</strong> {empresa.simples.mei}
+              <strong>MEI:</strong> {empresa?.simples.mei}
             </Typography>
             <Typography>
               <strong>Atualizado em:</strong>{" "}
-              {new Date(empresa.simples.atualizado_em).toLocaleDateString()}
+              {new Date(empresa?.simples?.atualizado_em).toLocaleDateString()}
             </Typography>
           </Paper>
         </Grid>
@@ -105,15 +105,15 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
             <Typography variant="h6">Atividade Principal</Typography>
             <Typography>
               <strong>Descrição:</strong>{" "}
-              {empresa.estabelecimento.atividade_principal.descricao}
+              {empresa?.estabelecimento?.atividade_principal?.descricao}
             </Typography>
             <Typography>
               <strong>ID:</strong>{" "}
-              {empresa.estabelecimento.atividade_principal.id}
+              {empresa?.estabelecimento?.atividade_principal?.id}
             </Typography>
             <Typography>
               <strong>Seção:</strong>{" "}
-              {empresa.estabelecimento.atividade_principal.secao}
+              {empresa?.estabelecimento?.atividade_principal?.secao}
             </Typography>
           </Paper>
         </Grid>
@@ -122,10 +122,10 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
         <Grid item xs={12}>
           <Paper sx={{ p: 2, mb: 2 }}>
             <Typography variant="h6">Atividades Secundárias</Typography>
-            {empresa.estabelecimento.atividades_secundarias.map(
+            {empresa?.estabelecimento?.atividades_secundarias.map(
               (secundarias: any, index: number) => (
                 <Typography key={index}>
-                  {`${secundarias.subclasse} - ${secundarias.descricao}`}
+                  {`${secundarias?.subclasse} - ${secundarias?.descricao}`}
                 </Typography>
               )
             )}
@@ -138,17 +138,17 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
             <Typography variant="h6">Estabelecimento</Typography>
             <Typography>
               <strong>Nome Fantasia:</strong>{" "}
-              {empresa.estabelecimento.nome_fantasia}
+              {empresa?.estabelecimento?.nome_fantasia}
             </Typography>
             <Typography>
-              <strong>Tipo:</strong> {empresa.estabelecimento.tipo}
+              <strong>Tipo:</strong> {empresa?.estabelecimento?.tipo}
             </Typography>
             <Typography>
-              <strong>CNPJ:</strong> {empresa.estabelecimento.cnpj}
+              <strong>CNPJ:</strong> {empresa?.estabelecimento?.cnpj}
             </Typography>
             <Typography>
               <strong>Situação Cadastral:</strong>{" "}
-              {empresa.estabelecimento.situacao_cadastral}
+              {empresa?.estabelecimento?.situacao_cadastral}
             </Typography>
             <Typography>
               <strong>Data de Situação Cadastral:</strong>{" "}
@@ -159,32 +159,32 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
             <Typography>
               <strong>Início da Atividade:</strong>{" "}
               {new Date(
-                empresa.estabelecimento.data_inicio_atividade
+                empresa?.estabelecimento?.data_inicio_atividade
               ).toLocaleDateString()}
             </Typography>
             <Typography>
               <strong>Logradouro:</strong>{" "}
-              {empresa.estabelecimento.tipo_logradouro}{" "}
-              {empresa.estabelecimento.logradouro}, Nº{" "}
-              {empresa.estabelecimento.numero},{" "}
-              {empresa.estabelecimento.complemento}
+              {empresa?.estabelecimento?.tipo_logradouro}{" "}
+              {empresa?.estabelecimento?.logradouro}, Nº{" "}
+              {empresa?.estabelecimento?.numero},{" "}
+              {empresa?.estabelecimento?.complemento}
             </Typography>
             <Typography>
-              <strong>Bairro:</strong> {empresa.estabelecimento.bairro}
+              <strong>Bairro:</strong> {empresa?.estabelecimento?.bairro}
             </Typography>
             <Typography>
-              <strong>CEP:</strong> {empresa.estabelecimento.cep}
+              <strong>CEP:</strong> {empresa?.estabelecimento?.cep}
             </Typography>
             <Typography>
-              <strong>Cidade:</strong> {empresa.estabelecimento.cidade.nome} -{" "}
-              {empresa.estabelecimento.estado.sigla}
+              <strong>Cidade:</strong> {empresa?.estabelecimento?.cidade?.nome} -{" "}
+              {empresa?.estabelecimento?.estado?.sigla}
             </Typography>
             <Typography>
-              <strong>Telefone:</strong> ({empresa.estabelecimento.ddd1}){" "}
-              {empresa.estabelecimento.telefone1}
+              <strong>Telefone:</strong> ({empresa?.estabelecimento?.ddd1}){" "}
+              {empresa?.estabelecimento?.telefone1}
             </Typography>
             <Typography>
-              <strong>Email:</strong> {empresa.estabelecimento.email}
+              <strong>Email:</strong> {empresa?.estabelecimento?.email}
             </Typography>
           </Paper>
         </Grid>
@@ -193,20 +193,20 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
         <Grid item xs={12}>
           <Paper sx={{ p: 2, mb: 2 }}>
             <Typography variant="h6">Inscrições Estaduais</Typography>
-            {empresa.estabelecimento.inscricoes_estaduais.length > 0 ? (
-              empresa.estabelecimento.inscricoes_estaduais.map(
+            {empresa?.estabelecimento?.inscricoes_estaduais?.length > 0 ? (
+              empresa?.estabelecimento?.inscricoes_estaduais.map(
                 (inscricao: any, index: number) => (
                   <Paper key={index} sx={{ p: 2, mb: 2 }}>
                     <Typography>
                       <strong>Inscrição Estadual:</strong>{" "}
-                      {inscricao.inscricao_estadual}
+                      {inscricao?.inscricao_estadual}
                     </Typography>
                     <Typography>
-                      <strong>Estado:</strong> {inscricao.estado.nome} (
-                      {inscricao.estado.sigla})
+                      <strong>Estado:</strong> {inscricao?.estado?.nome} (
+                      {inscricao?.estado?.sigla})
                     </Typography>
                     <Typography>
-                      <strong>Ativo:</strong> {inscricao.ativo ? "Sim" : "Não"}
+                      <strong>Ativo:</strong> {inscricao?.ativo ? "Sim" : "Não"}
                     </Typography>
                   </Paper>
                 )
