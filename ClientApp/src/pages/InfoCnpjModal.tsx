@@ -80,7 +80,7 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
             <Typography>
               <strong>Data de Opção pelo Simples:</strong>{" "}
               {new Date(
-                empresa.simples.data_opcao_simples || "Não informado"
+                empresa?.simples?.data_opcao_simples || "Não informado"
               ).toLocaleDateString()}
             </Typography>
             <Typography>
