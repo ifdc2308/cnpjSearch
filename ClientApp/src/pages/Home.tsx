@@ -58,9 +58,10 @@ const DashboardPage: React.FC = () => {
       setEmpresa(empresaData);
       setError(null);
       handleOpen();
-    } catch (err) {
+    } catch (error: any) {
       setError(
-        "Erro ao consultar o CNPJ. Verifique o número e tente novamente."
+        error?.message ||
+          "Erro ao consultar o CNPJ. Verifique o número e tente novamente."
       );
       setEmpresa(null);
     } finally {
