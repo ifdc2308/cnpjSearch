@@ -90,7 +90,7 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
               ).toLocaleDateString()}
             </Typography>
             <Typography>
-              <strong>MEI:</strong> {empresa?.simples.mei}
+              <strong>MEI:</strong> {empresa?.simples?.mei}
             </Typography>
             <Typography>
               <strong>Atualizado em:</strong>{" "}
