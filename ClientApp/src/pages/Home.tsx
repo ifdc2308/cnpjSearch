@@ -168,5 +168,8 @@ const styles = {
   },
   title: {
     fontWeight: 600,
+    "@media (max-width: 600px)": {
+      paddingTop: 3,
+    },
   },
 };
