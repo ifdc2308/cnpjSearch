@@ -1,5 +1,6 @@
 import { Grid, Typography, Paper, Container, Button } from "@mui/material";
 import { Empresa } from "../interfaces/Empresa";
+import { Print, Replay } from "@mui/icons-material";
 
 interface InfoCnpjModalProps {
   empresa: Empresa;
@@ -12,8 +13,8 @@ export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({
 }) => {
   return (
     <Container maxWidth="lg" sx={{ paddingBlock: 5 }}>
-      <Grid container spacing={2} sx={{ mt: 2 }}>
-        <Grid item xs={12} md={10}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={8}>
           <Typography sx={styles.title}>
             Informação do CNPJ pesquisado
           </Typography>
@@ -22,9 +23,20 @@ export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({
           <Button
             variant="contained"
             sx={styles.button}
+            startIcon={<Replay />}
             onClick={() => setSearch(null)}
           >
             Nova Pesquisa
+          </Button>
+        </Grid>
+        <Grid item xs={12} md={2} justifyContent="flex-end">
+          <Button
+            variant="contained"
+            sx={styles.button}
+            startIcon={<Print />}
+            onClick={() => window.print()}
+          >
+            Imprimir
           </Button>
         </Grid>
         {/* Dados da Empresa */}
