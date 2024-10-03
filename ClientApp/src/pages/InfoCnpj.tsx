@@ -1,14 +1,14 @@
-import { Grid, Typography, Paper, Box } from "@mui/material";
+import { Grid, Typography, Paper, Container } from "@mui/material";
 import { Empresa } from "../interfaces/Empresa";
 
 interface InfoCnpjModalProps {
   empresa: Empresa;
 }
 
-export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
+export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
   return (
-    <Box sx={styles.modal}>
-      <Typography sx={styles.title}>Informações da empresa</Typography>
+    <Container maxWidth="lg" sx={{paddingBlock: 5}}>
+      <Typography sx={styles.title}>Informação do CNPJ pesquisado</Typography>
       <Grid container spacing={2} sx={{ mt: 2 }}>
         {/* Dados da Empresa */}
         <Grid item xs={12}>
@@ -221,24 +221,24 @@ export const InfoCnpjModal: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
           </Paper>
         </Grid>
       </Grid>
-    </Box>
+    </Container>
   );
 };
 
 const styles = {
-  modal: {
-    position: "absolute" as "absolute",
-    borderRadius: 5,
-    overflow: "auto",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "70%",
-    height: "70%",
-    bgcolor: "background.paper",
-    boxShadow: 24,
-    p: 5,
-  },
+  // modal: {
+  //   position: "absolute" as "absolute",
+  //   borderRadius: 5,
+  //   overflow: "auto",
+  //   top: "50%",
+  //   left: "50%",
+  //   transform: "translate(-50%, -50%)",
+  //   width: "70%",
+  //   height: "70%",
+  //   bgcolor: "background.paper",
+  //   boxShadow: 24,
+  //   p: 5,
+  // },
   title: {
     fontWeight: 700,
     color: "#ff735c",

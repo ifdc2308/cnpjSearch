@@ -7,7 +7,6 @@ import {
   InputBase,
   Typography,
   Box,
-  Modal,
   Stack,
   LinearProgress,
 } from "@mui/material";
@@ -15,14 +14,13 @@ import { Search } from "@mui/icons-material";
 import { getCNPJ } from "../services/cnpj";
 import imageLogo from "../assets/searchAvatar.jpg";
 import { Footer } from "../components/Footer";
-import { InfoCnpjModal } from "./InfoCnpjModal";
+import { InfoCnpj } from "./InfoCnpj";
 
 const DashboardPage: React.FC = () => {
   const [cnpj, setCnpj] = useState<string>("");
   const [empresa, setEmpresa] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(false);
 
   const formatCNPJ = (value: string) => {
     return value
@@ -38,14 +36,6 @@ const DashboardPage: React.FC = () => {
     return value.replace(/\D/g, "");
   };
 
-  //modal states
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const formattedValue = formatCNPJ(event.target.value);
     setCnpj(formattedValue);
@@ -57,7 +47,6 @@ const DashboardPage: React.FC = () => {
       const empresaData = await getCNPJ(unmaskedCNPJ);
       setEmpresa(empresaData);
       setError(null);
-      handleOpen();
     } catch (error: any) {
       setError(
         error?.message ||
@@ -72,105 +61,99 @@ const DashboardPage: React.FC = () => {
   return (
     <>
       <ResponsiveAppBar />
-      <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={8}
-          sx={{
-            minHeight: "90vh", // altura mínima para ocupar 85% da viewport
-            display: "flex",
-            alignItems: "center", // alinha verticalmente ao centro
-            justifyContent: "center", // opcional: centraliza horizontalmente
-          }}
-        >
+      {!empresa && ( //quando empresa existe, retiro os inputs de pesquisa.
+        <Container maxWidth="lg">
           <Grid
-            item
-            xs={12}
-            sm={6}
+            container
+            spacing={8}
             sx={{
+              minHeight: "90vh", // altura mínima para ocupar 85% da viewport
               display: "flex",
               alignItems: "center", // alinha verticalmente ao centro
               justifyContent: "center", // opcional: centraliza horizontalmente
             }}
           >
-            <Stack direction={"column"} spacing={5}>
-              <Typography variant="h5" sx={styles.title}>
-                Consulte informações de uma empresa com a consulta por CNPJ !
-              </Typography>
-              <Box
-                component="form"
-                sx={{
-                  p: "1px 20px",
-                  display: "flex",
-                  alignItems: "center",
-                  width: "100%",
-                  backgroundColor: "#fff",
-                  borderRadius: 10,
-                  border: "1px solid #000",
-                }}
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleSearchClick();
-                }}
-              >
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="00.000.000/0000-00"
-                  inputProps={{ "aria-label": "Pesquisar CNPJ" }}
-                  value={cnpj}
-                  onChange={handleInputChange}
-                  required
-                />
-                <IconButton
-                  type="button"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                  onClick={handleSearchClick}
-                >
-                  <Search />
-                </IconButton>
-              </Box>
-            </Stack>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              alignContent: "center",
-            }}
-          >
-            <Box component="img" sx={styles.imageLogo} src={imageLogo}></Box>
-          </Grid>
-          {loading && (
-            <Box sx={{ width: "50%", mt: 2 }}>
-              <LinearProgress
-                sx={{
-                  backgroundColor: "#e0e0e0",
-                  "& .MuiLinearProgress-bar": { backgroundColor: "#ff735c" },
-                }}
-              />
-            </Box>
-          )}
-          {error && (
-            <Grid item xs={12}>
-              <Typography style={{ color: "red" }}>{error}</Typography>{" "}
-              {/* Exibe o erro se houver */}
-            </Grid>
-          )}
-          {empresa && (
-            <Modal
-              open={open}
-              onClose={handleClose}
-              sx={{ backdropFilter: "blur(2px)" }}
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              sx={{
+                display: "flex",
+                alignItems: "center", // alinha verticalmente ao centro
+                justifyContent: "center", // opcional: centraliza horizontalmente
+              }}
             >
-              <InfoCnpjModal empresa={empresa} />
-            </Modal>
-          )}
-        </Grid>
-      </Container>
+              <Stack direction={"column"} spacing={5}>
+                <Typography variant="h5" sx={styles.title}>
+                  Consulte informações de uma empresa com a consulta por CNPJ !
+                </Typography>
+                <Box
+                  component="form"
+                  sx={{
+                    p: "1px 20px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
+                    backgroundColor: "#fff",
+                    borderRadius: 10,
+                    border: "1px solid #000",
+                  }}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSearchClick();
+                  }}
+                >
+                  <InputBase
+                    sx={{ ml: 1, flex: 1 }}
+                    placeholder="00.000.000/0000-00"
+                    inputProps={{ "aria-label": "Pesquisar CNPJ" }}
+                    value={cnpj}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <IconButton
+                    type="button"
+                    sx={{ p: "10px" }}
+                    aria-label="search"
+                    onClick={handleSearchClick}
+                  >
+                    <Search />
+                  </IconButton>
+                </Box>
+              </Stack>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                alignContent: "center",
+              }}
+            >
+              <Box component="img" sx={styles.imageLogo} src={imageLogo}></Box>
+            </Grid>
+            {loading && (
+              <Box sx={{ width: "50%", mt: 2 }}>
+                <LinearProgress
+                  sx={{
+                    backgroundColor: "#e0e0e0",
+                    "& .MuiLinearProgress-bar": { backgroundColor: "#ff735c" },
+                  }}
+                />
+              </Box>
+            )}
+            {error && (
+              <Grid item xs={12}>
+                <Typography style={{ color: "red" }}>{error}</Typography>{" "}
+                {/* Exibe o erro se houver */}
+              </Grid>
+            )}
+          </Grid>
+        </Container>
+      )}
+      {empresa && <InfoCnpj empresa={empresa} />}
       <Footer />
     </>
   );
