@@ -153,7 +153,7 @@ const DashboardPage: React.FC = () => {
           </Grid>
         </Container>
       )}
-      {empresa && <InfoCnpj empresa={empresa} />}
+      {empresa && <InfoCnpj empresa={empresa} setSearch={setEmpresa} />}
       <Footer />
     </>
   );

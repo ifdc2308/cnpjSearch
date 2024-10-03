@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Link } from "@mui/material";
 
 export const Footer = () => {
   return (
@@ -11,7 +11,15 @@ export const Footer = () => {
             justifyContent: "center",
           }}
         >
-          2024 &copy; Desenvolvido por Ítalo Dórea
+          2024 &copy; Desenvolvido por&nbsp;
+          <Link
+            href="https://ifdc2308.github.io/portfolio-italo/"
+            underline="none"
+            color={"#000"}
+            sx={{ fontWeight: 600 }}
+          >
+            Ítalo Dórea
+          </Link>
         </Typography>
       </Grid>
     </Grid>

@@ -1,18 +1,35 @@
-import { Grid, Typography, Paper, Container } from "@mui/material";
+import { Grid, Typography, Paper, Container, Button } from "@mui/material";
 import { Empresa } from "../interfaces/Empresa";
 
 interface InfoCnpjModalProps {
   empresa: Empresa;
+  setSearch: (value: any) => void;
 }
 
-export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
+export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({
+  empresa,
+  setSearch,
+}) => {
   return (
-    <Container maxWidth="lg" sx={{paddingBlock: 5}}>
-      <Typography sx={styles.title}>Informação do CNPJ pesquisado</Typography>
+    <Container maxWidth="lg" sx={{ paddingBlock: 5 }}>
       <Grid container spacing={2} sx={{ mt: 2 }}>
+        <Grid item xs={12} md={10}>
+          <Typography sx={styles.title}>
+            Informação do CNPJ pesquisado
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={2} justifyContent="flex-end">
+          <Button
+            variant="contained"
+            sx={styles.button}
+            onClick={() => setSearch(null)}
+          >
+            Nova Pesquisa
+          </Button>
+        </Grid>
         {/* Dados da Empresa */}
         <Grid item xs={12}>
-          <Paper sx={{ p: 2, mb: 2 }}>
+          <Paper sx={styles.paper} elevation={3}>
             <Typography variant="h6">Dados da Empresa</Typography>
             <Typography>
               <strong>Razão Social:</strong> {empresa?.razao_social}
@@ -45,7 +62,7 @@ export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
         <Grid item xs={12}>
           <Typography variant="h6">Sócios</Typography>
           {empresa?.socios?.map((socio: any, index: number) => (
-            <Paper key={index} sx={{ p: 2, mb: 2 }}>
+            <Paper key={index} sx={styles.paper} elevation={3}>
               <Typography>
                 <strong>Nome:</strong> {socio?.nome}
               </Typography>
@@ -72,7 +89,7 @@ export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
 
         {/* Dados do Simples Nacional */}
         <Grid item xs={12}>
-          <Paper sx={{ p: 2, mb: 2 }}>
+          <Paper sx={styles.paper} elevation={3}>
             <Typography variant="h6">Simples Nacional</Typography>
             <Typography>
               <strong>Simples:</strong> {empresa?.simples?.simples}
@@ -105,7 +122,7 @@ export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
 
         {/* Atividade Principal */}
         <Grid item xs={12}>
-          <Paper sx={{ p: 2, mb: 2 }}>
+          <Paper sx={styles.paper} elevation={3}>
             <Typography variant="h6">Atividade Principal</Typography>
             <Typography>
               <strong>Descrição:</strong>{" "}
@@ -124,7 +141,7 @@ export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
 
         {/* Atividades Secundárias */}
         <Grid item xs={12}>
-          <Paper sx={{ p: 2, mb: 2 }}>
+          <Paper sx={styles.paper} elevation={3}>
             <Typography variant="h6">Atividades Secundárias</Typography>
             {empresa?.estabelecimento?.atividades_secundarias?.map(
               (secundarias: any, index: number) => (
@@ -138,7 +155,7 @@ export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
 
         {/* Estabelecimento - Endereço e Contato */}
         <Grid item xs={12}>
-          <Paper sx={{ p: 2, mb: 2 }}>
+          <Paper sx={styles.paper} elevation={3}>
             <Typography variant="h6">Estabelecimento</Typography>
             <Typography>
               <strong>Nome Fantasia:</strong>{" "}
@@ -195,12 +212,12 @@ export const InfoCnpj: React.FC<InfoCnpjModalProps> = ({ empresa }) => {
 
         {/* Inscrições Estaduais */}
         <Grid item xs={12}>
-          <Paper sx={{ p: 2, mb: 2 }}>
+          <Paper sx={styles.paper} elevation={3}>
             <Typography variant="h6">Inscrições Estaduais</Typography>
             {empresa?.estabelecimento?.inscricoes_estaduais?.length > 0 ? (
               empresa?.estabelecimento?.inscricoes_estaduais?.map(
                 (inscricao: any, index: number) => (
-                  <Paper key={index} sx={{ p: 2, mb: 2 }}>
+                  <Paper key={index} sx={styles.paper}>
                     <Typography>
                       <strong>Inscrição Estadual:</strong>{" "}
                       {inscricao?.inscricao_estadual}
@@ -243,6 +260,15 @@ const styles = {
     fontWeight: 700,
     color: "#ff735c",
     fontSize: 23,
-    textAlign: "center",
+    textAlign: "left",
+    pb: 2,
   },
+  button: {
+    backgroundColor: "#ff735c",
+    "&:hover": {
+      backgroundColor: "#000",
+    },
+    marginLeft: "auto",
+  },
+  paper: { p: 3, mb: 2, borderRadius: 3 },
 };
